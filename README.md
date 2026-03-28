@@ -977,6 +977,7 @@ cd sql-tasks-complete
 sudo make up
 
 # Инициализация баз данных (создание таблиц и заполнение данными)
+sudo chmod +x init.sh
 sudo ./init.sh
 # или по отдельности:
 sudo make init-mysql
