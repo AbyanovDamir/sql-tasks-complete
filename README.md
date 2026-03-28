@@ -51,11 +51,11 @@
 ## Структура проекта
 
 
--sql-tasks-complete/**
--├── docker-compose.yml**
--├── Makefile**
-**├── init.sh**
-**├── databases/**
+-sql-tasks-complete/
+-├── docker-compose.yml
+-├── Makefile
+-├── init.sh**
+-├── databases/**
 **│ ├── vehicles/ -- таблицы Vehicle, Car, Motorcycle, Bicycle**
 **│ ├── racing/ -- таблицы Classes, Cars, Races, Results**
 **│ ├── hotel/ -- таблицы Hotel, Room, Customer, Booking**
