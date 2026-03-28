@@ -50,29 +50,29 @@
 ---
 ## Структура проекта
 
-
-*sql-tasks-complete/
-*├── docker-compose.yml
-*├── Makefile
--├── init.sh**
--├── databases/**
-**│ ├── vehicles/ -- таблицы Vehicle, Car, Motorcycle, Bicycle**
-**│ ├── racing/ -- таблицы Classes, Cars, Races, Results**
-**│ ├── hotel/ -- таблицы Hotel, Room, Customer, Booking**
-**│ └── organization/ -- таблицы Departments, Roles, Employees, Projects, Tasks**
-**├── solutions/**
-**│ ├── mysql/ -- решения для MySQL (13 файлов)**
-**│ │ ├── vehicles/task1.sql, task2.sql**
-**│ │ ├── racing/task1..5.sql**
-**│ │ ├── hotel/task1..3.sql**
-**│ │ └── organization/task1..3.sql**
-**│ └── postgresql/ -- решения для PostgreSQL (13 файлов)**
-**│ ├── vehicles/**
-**│ ├── racing/**
-**│ ├── hotel/**
-**│ └── organization/**
-**└── scripts/ -- вспомогательные скрипты**
-
+```
+sql-tasks-complete/
+├── docker-compose.yml
+├── Makefile
+├── init.sh
+├── databases/
+│ ├── vehicles/ -- таблицы Vehicle, Car, Motorcycle, Bicycle
+│ ├── racing/ -- таблицы Classes, Cars, Races, Results
+│ ├── hotel/ -- таблицы Hotel, Room, Customer, Booking
+│ └── organization/ -- таблицы Departments, Roles, Employees, Projects, Tasks
+├── solutions/
+│ ├── mysql/ -- решения для MySQL (13 файлов)
+│ │ ├── vehicles/task1.sql, task2.sql
+│ │ ├── racing/task1..5.sql
+│ │ ├── hotel/task1..3.sql
+│ │ └── organization/task1..3.sql
+│ └── postgresql/ -- решения для PostgreSQL (13 файлов)
+│ ├── vehicles/
+│ ├── racing/
+│ ├── hotel/
+│ └── organization/
+└── scripts/ -- вспомогательные скрипты
+```
 
 ---
 ## Структура базы данных
