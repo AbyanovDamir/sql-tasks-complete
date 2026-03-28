@@ -50,10 +50,10 @@
 ---
 ## Структура проекта
 
-**Дерево проекта**
-**sql-tasks-complete/**
-**├── docker-compose.yml**
-**├── Makefile**
+
+-sql-tasks-complete/**
+-├── docker-compose.yml**
+-├── Makefile**
 **├── init.sh**
 **├── databases/**
 **│ ├── vehicles/ -- таблицы Vehicle, Car, Motorcycle, Bicycle**
