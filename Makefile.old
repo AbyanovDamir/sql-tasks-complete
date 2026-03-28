@@ -1,0 +1,152 @@
+.PHONY: help up down init-mysql init-postgres all-mysql all-postgres
+
+help:
+	@echo "Доступные команды:"
+	@echo "  make up              - Запустить все контейнеры"
+	@echo "  make down            - Остановить все контейнеры"
+	@echo "  make init-mysql      - Инициализировать MySQL (создать таблицы и данные)"
+	@echo "  make init-postgres   - Инициализировать PostgreSQL (создать таблицы и данные)"
+	@echo "  make all-mysql       - Выполнить все задачи в MySQL"
+	@echo "  make all-postgres    - Выполнить все задачи в PostgreSQL"
+	@echo "  make task1-mysql     - Выполнить задачу 1 в MySQL"
+	@echo "  make task2-mysql     - Выполнить задачу 2 в MySQL"
+
+up:
+	docker compose up -d
+
+down:
+	docker compose down
+
+init-mysql:
+	@echo "Инициализация MySQL..."
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < databases/vehicles/01_create_tables.sql
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < databases/vehicles/02_insert_data.sql
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < databases/racing/01_create_tables.sql
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < databases/racing/02_insert_data.sql
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < databases/hotel/01_create_tables.sql
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < databases/hotel/02_insert_data.sql
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < databases/organization/01_create_tables.sql
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < databases/organization/02_insert_data.sql
+
+init-postgres:
+	@echo "Инициализация PostgreSQL..."
+	docker compose exec -T postgres psql -U postgres -d tasks_db < databases/vehicles/01_create_tables_postgres.sql
+	docker compose exec -T postgres psql -U postgres -d tasks_db < databases/vehicles/02_insert_data.sql
+	docker compose exec -T postgres psql -U postgres -d tasks_db < databases/racing/01_create_tables_postgres.sql
+	docker compose exec -T postgres psql -U postgres -d tasks_db < databases/racing/02_insert_data.sql
+	docker compose exec -T postgres psql -U postgres -d tasks_db < databases/hotel/01_create_tables_postgres.sql
+	docker compose exec -T postgres psql -U postgres -d tasks_db < databases/hotel/02_insert_data.sql
+	docker compose exec -T postgres psql -U postgres -d tasks_db < databases/organization/01_create_tables_postgres.sql
+	docker compose exec -T postgres psql -U postgres -d tasks_db < databases/organization/02_insert_data.sql
+
+all-mysql: task1-mysql task2-mysql racing-task1-mysql racing-task2-mysql racing-task3-mysql racing-task4-mysql racing-task5-mysql hotel-task1-mysql hotel-task2-mysql hotel-task3-mysql org-task1-mysql org-task2-mysql org-task3-mysql
+
+all-postgres: task1-postgres task2-postgres racing-task1-postgres racing-task2-postgres racing-task3-postgres racing-task4-postgres racing-task5-postgres hotel-task1-postgres hotel-task2-postgres hotel-task3-postgres org-task1-postgres org-task2-postgres org-task3-postgres
+
+# Задачи по транспортным средствам
+task1-mysql:
+	@echo "=== Задача 1 (Транспортные средства) - MySQL ==="
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < solutions/vehicles/task1.sql
+
+task2-mysql:
+	@echo "=== Задача 2 (Транспортные средства) - MySQL ==="
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < solutions/vehicles/task2.sql
+
+task1-postgres:
+	@echo "=== Задача 1 (Транспортные средства) - PostgreSQL ==="
+	docker compose exec -T postgres psql -U postgres -d tasks_db < solutions/vehicles/task1.sql
+
+task2-postgres:
+	@echo "=== Задача 2 (Транспортные средства) - PostgreSQL ==="
+	docker compose exec -T postgres psql -U postgres -d tasks_db < solutions/vehicles/task2.sql
+
+# Задачи по автомобильным гонкам
+racing-task1-mysql:
+	@echo "=== Задача 1 (Автомобильные гонки) - MySQL ==="
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < solutions/racing/task1.sql
+
+racing-task2-mysql:
+	@echo "=== Задача 2 (Автомобильные гонки) - MySQL ==="
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < solutions/racing/task2.sql
+
+racing-task3-mysql:
+	@echo "=== Задача 3 (Автомобильные гонки) - MySQL ==="
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < solutions/racing/task3.sql
+
+racing-task4-mysql:
+	@echo "=== Задача 4 (Автомобильные гонки) - MySQL ==="
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < solutions/racing/task4.sql
+
+racing-task5-mysql:
+	@echo "=== Задача 5 (Автомобильные гонки) - MySQL ==="
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < solutions/racing/task5.sql
+
+racing-task1-postgres:
+	@echo "=== Задача 1 (Автомобильные гонки) - PostgreSQL ==="
+	docker compose exec -T postgres psql -U postgres -d tasks_db < solutions/racing/task1.sql
+
+racing-task2-postgres:
+	@echo "=== Задача 2 (Автомобильные гонки) - PostgreSQL ==="
+	docker compose exec -T postgres psql -U postgres -d tasks_db < solutions/racing/task2.sql
+
+racing-task3-postgres:
+	@echo "=== Задача 3 (Автомобильные гонки) - PostgreSQL ==="
+	docker compose exec -T postgres psql -U postgres -d tasks_db < solutions/racing/task3.sql
+
+racing-task4-postgres:
+	@echo "=== Задача 4 (Автомобильные гонки) - PostgreSQL ==="
+	docker compose exec -T postgres psql -U postgres -d tasks_db < solutions/racing/task4.sql
+
+racing-task5-postgres:
+	@echo "=== Задача 5 (Автомобильные гонки) - PostgreSQL ==="
+	docker compose exec -T postgres psql -U postgres -d tasks_db < solutions/racing/task5.sql
+
+# Задачи по бронированию отелей
+hotel-task1-mysql:
+	@echo "=== Задача 1 (Бронирование отелей) - MySQL ==="
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < solutions/hotel/task1.sql
+
+hotel-task2-mysql:
+	@echo "=== Задача 2 (Бронирование отелей) - MySQL ==="
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < solutions/hotel/task2.sql
+
+hotel-task3-mysql:
+	@echo "=== Задача 3 (Бронирование отелей) - MySQL ==="
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < solutions/hotel/task3.sql
+
+hotel-task1-postgres:
+	@echo "=== Задача 1 (Бронирование отелей) - PostgreSQL ==="
+	docker compose exec -T postgres psql -U postgres -d tasks_db < solutions/hotel/task1.sql
+
+hotel-task2-postgres:
+	@echo "=== Задача 2 (Бронирование отелей) - PostgreSQL ==="
+	docker compose exec -T postgres psql -U postgres -d tasks_db < solutions/hotel/task2.sql
+
+hotel-task3-postgres:
+	@echo "=== Задача 3 (Бронирование отелей) - PostgreSQL ==="
+	docker compose exec -T postgres psql -U postgres -d tasks_db < solutions/hotel/task3.sql
+
+# Задачи по структуре организации
+org-task1-mysql:
+	@echo "=== Задача 1 (Структура организации) - MySQL ==="
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < solutions/organization/task1.sql
+
+org-task2-mysql:
+	@echo "=== Задача 2 (Структура организации) - MySQL ==="
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < solutions/organization/task2.sql
+
+org-task3-mysql:
+	@echo "=== Задача 3 (Структура организации) - MySQL ==="
+	docker compose exec -T mysql mysql -uroot -proot tasks_db < solutions/organization/task3.sql
+
+org-task1-postgres:
+	@echo "=== Задача 1 (Структура организации) - PostgreSQL ==="
+	docker compose exec -T postgres psql -U postgres -d tasks_db < solutions/organization/task1.sql
+
+org-task2-postgres:
+	@echo "=== Задача 2 (Структура организации) - PostgreSQL ==="
+	docker compose exec -T postgres psql -U postgres -d tasks_db < solutions/organization/task2.sql
+
+org-task3-postgres:
+	@echo "=== Задача 3 (Структура организации) - PostgreSQL ==="
+	docker compose exec -T postgres psql -U postgres -d tasks_db < solutions/organization/task3.sql
