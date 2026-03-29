@@ -271,6 +271,7 @@ sql-tasks-complete/
 
 **Решение (MySQL/PostgreSQL):**
 ```sql
+-- Задача 1: Найти производителей и модели мотоциклов (PostgreSQL)
 SELECT 
     v.maker,
     m.model
@@ -280,6 +281,7 @@ WHERE m.horsepower > 150
     AND m.price < 20000 
     AND m.type = 'Sport'
 ORDER BY m.horsepower DESC;
+
 ```
 
 
